@@ -1,0 +1,122 @@
+{%extends 'Courses/base.html' %}
+
+{%block title%} My Cart
+{%endblock%}
+
+
+{%block content%}
+
+<link rel="stylesheet" href="font-awesome-animation.min.css">
+
+
+<style>
+
+  .body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    margin-top: 50px;
+  }
+
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    max-width: 900px;
+    margin-bottom: 20px;
+  }
+
+  .cartDescription {
+    text-align: left;
+    font-size: 0.7em;
+    font-weight: 600;
+    color: rgb(99, 99, 99);
+  }
+
+  .cart-item img {
+    width: 240px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+
+  .cart-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-name {
+    font-size: 1.2em;
+  font-weight: 800;
+  color: rgb(26, 26, 26);
+  }
+
+  .checkout-btn {
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    align-self: flex-end;
+  }
+
+  .checkout-btn:hover {
+    background-color: #07B90D;
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  .cart-item:last-child {
+    margin-bottom: 0;
+  }
+
+  a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+ }
+
+ .checkout-btn.a:hover{
+  text-decoration: none;
+  color: inherit;
+ }
+</style>
+
+<div style="display: flex; align-items: center; justify-content: center; margin-top: 150px;">
+  <h1><i style="margin-right: 10px;" class="fa-solid fa-bag-shopping"></i>My Cart</h1>
+</div>
+
+<div class="container-fluid row">
+  {% for ct in carts %}
+  <div class="cart-item">
+    <img src="{{ct.course.thumbnail.url}}" alt="{{ct.course.name}}">
+    <div class="cart-details">
+      <p class="product-name">{{ct.course.name}}</p>
+      <p class="cartDescription">{{ct.course.discription}}</p>
+      <p class="cartDescription">Discount: {{ct.course.discount}}%</p>
+      <p class="price-details">
+        <span style="font-size: 1.2em; font-weight: 800; color: rgb(26, 26, 26);">{{ct.course.price}} Rs\-</span>
+      </p>
+    </div>
+    <a href="/check-out/{{ct.course.slug}}" class="checkout-btn">Check-out</a>
+  </div>
+  {% endfor %}
+</div>
+{%endblock%}

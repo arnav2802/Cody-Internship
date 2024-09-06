@@ -1,0 +1,120 @@
+
+{%extends 'Courses/base.html' %} {%block title%} Courses {%endblock%} 
+{% load static %}
+{% block content %}
+
+
+<style>
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  .active-video{
+    border-color: #008bf8;
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+    transform: translateY(-50%, 50%);
+    opacity: 1;
+  }
+  .yt{
+    border: 2px solid #c3c6ce;
+    transition: 0.5s ease-out;
+    overflow: visible;
+    border-radius: 20px;
+    background: #f5f5f5;
+  }
+  .yt:hover{
+    border-color: #008bf8;
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+    transform: translateY(-50%, 50%);
+    opacity: 1;
+  }
+  a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+ }
+
+</style>
+<div class="container-fluid" style="background-color: white; color: black;">
+  <div hidden>
+    <p class="">Course name: {{Course.name}}</p>
+    <p class="">Course price: {{Course.price}}</p>
+    <p class="">Course discount: {{Course.discount}}</p>
+    <p class="">Course discription: {{Course.discription}}</p>
+    <p class="">Course prerequisites: {{Course.prerequisites_set.all}}</p>
+    <p class="">Course tag: {{Course.tag_set.all}}</p>
+    <p class="">Course video: {{Course.video_set.all}}</p>
+  </div>
+  <div style="padding-top: 80px;">
+    <br>
+    <div class="card p-3 yt">
+      <div class="row">
+        <div class="col"  style="display: flex; justify-content: space-around; flex-direction: column;">
+          <div class="mx-auto ">
+            <iframe
+              style="border-radius: 8px;"
+              id="player "
+              width="1015"
+              height="515"
+              src="https://www.youtube.com/embed/{{video.video_id}}"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div>
+            <div class="card" style="max-width: 63.5rem; min-height:8rem; border-radius: 8px; border-color: #008bf8;">
+              <div class="card-body">
+                <h5 class="card-title" style="font-size: 1.8rem;">{{Course.name}}</h5>
+                <p class="card-text">{{Course.discription}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col"style="border-radius: 20px;">
+          <ul class=" list-group" style="border-radius: 20px;" >
+            {% for v in Course.video_set.all %}
+            <li 
+               class="list-group-item {% if v == video %} active-video {% endif%} yt " style="border-radius: 20px; margin: 5px;"  >
+               <a 
+                href="?lecture={{v.serial_number}}">{{v}}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+        <div class="mt-3">
+          <div class="card yt" style=" max-width: 93.8rem; display: flex; flex-direction: row; justify-content: space-around; border-color: #008bf8; border-radius: 20px;">
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: 1.7rem;">Prerequisites required</h5>
+              <p class="card-text">
+                {% for prerequisites in Course.prerequisites_set.all %}
+                <li class="">{{prerequisites.discription}}</li>
+                {% endfor %}
+              </p>
+            </div>
+            <div class="card-body" style="padding-left: 150px;">
+              <h5 class="card-title" style="font-size: 1.7rem;" >Related Tags</h5>
+              <p class="card-text">
+                {% for tags in Course.tag_set.all %}
+                <li class="">{{tags.discription}}</li>
+                {% endfor %}
+              </p>
+            </div>
+          </div>
+          <div class="card" style="max-width: 93.8rem;">
+            
+          </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+  </div>
+</div>
+<script src="{% static 'js/course_page.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/scrollbar.css'%}">
+{% endblock %}

@@ -1,0 +1,197 @@
+{%extends 'Courses/base.html' %}
+{% load static %}
+{%block title%} Signup
+{%endblock%}
+
+
+{%block content%}
+
+
+<style>
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+} 
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  background-color: #F8F9FD;
+  padding: 20px;
+  border-radius: 20px;
+  border: 5px solid rgb(255, 255, 255);
+  position: relative;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 100px -20px;
+}
+
+.title {
+  color: rgb(16, 137, 211);
+  font-weight: 900;
+  font-size: 30px;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.title::before,.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: rgb(16, 137, 211);
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: rgb(16, 137, 211);
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.message, .signin {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a {
+  color: rgb(16, 137, 211);
+}
+
+.signin a:hover {
+  text-decoration: underline rgb(16, 137, 211);
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.form label {
+  position: relative;
+}
+
+.form label .input {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.form label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+.form label .input:focus + span,.form label .input:valid + span {
+  top: 30px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.form label .input:valid + span {
+  color: green;
+}
+
+.submit123 {
+  border: none;
+  outline: none;
+  background-color: rgb(16, 137, 211);
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: .3s ease;
+}
+
+.submit:hover {
+  background-color: rgb(16, 137, 211);
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+</style>
+
+<div class="container" style="margin-top:130px; margin-bottom: 50px;" id="container">
+  <div>
+      <form class="form" method="POST" action="/signup">
+          {% csrf_token %}
+          
+          <p class="title">Register</p>
+          <p class="message">Signup now and get full access to our Website.</p>
+          <div class="flex">
+              <label>
+                  <input required type="text" id="first_name" name="first_name" class="input" placeholder="">
+                  <span>Firstname</span>
+              </label>
+
+              <label>
+                  <input required type="text" id="last_name" name="last_name" class="input" placeholder="">
+                  <span>Lastname</span>
+              </label>
+          </div>
+
+          <label>
+            <input required type="text" id="username" name="username" class="input" placeholder="">
+            <span>UserName</span>
+          </label>
+
+          <label>
+              <input required type="email" id="email" name="email" class="input" placeholder="">
+              <span>Email</span>
+          </label>
+
+          <label>
+              <input required type="password" id="password1" name="password1" class="input" placeholder="">
+              <span>Password</span>
+          </label>
+
+          <label>
+              <input required type="password" id="password2" name="password2" class="input" placeholder="">
+              <span>Confirm password</span>
+          </label>
+
+          <input class="submit123" type="submit" value="Register">
+          <p class="signin">Already have an account? <a href="login">Signin</a></p>
+      </form>
+  </div>
+</div>
+
+{%endblock%}

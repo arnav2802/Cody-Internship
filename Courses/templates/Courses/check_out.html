@@ -1,0 +1,335 @@
+{%extends 'Courses/base.html' %}
+
+{%block title%} Checkout
+{%endblock%}
+
+
+{%block content%}
+
+<style>
+
+p,
+label {
+  font:
+    1rem 'Fira Sans',
+    sans-serif;
+}
+
+
+.master-container {
+  display: grid;
+  grid-template-columns: auto;
+  border-radius: 19px 19px 7px 7px;
+  gap: 10px;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 100px -20px;
+  background-color: #ffffff00;
+}
+
+.card {
+  border-radius: 19px 19px 7px 7px;
+  width: 500px;
+  background: #FFFFFF;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 100px -20px;
+}
+
+.title {
+  width: 100%;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  border-bottom: 1px solid #efeff3;
+  font-weight: 700;
+  font-size: 11px;
+  color: #63656b;
+}
+
+
+.cart {
+  border-radius: 19px 19px 7px 7px;
+}
+
+.cart .products {
+  display: flex;
+  flex-direction: column, row;
+  padding: 10px;
+}
+
+.cart .products .product {
+  display: grid;
+  grid-template-columns: 60px 1fr 80px 1fr;
+  gap: 10px;
+}
+
+.cart .products .product span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #47484b;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.cart .products .product p {
+  font-size: 11px;
+  font-weight: 600;
+  color: #7a7c81;
+}
+
+.card .small {
+  font-size: 15px;
+  margin: 0 0 auto auto;
+}
+
+.coupons {
+  border-radius: 19px 19px 7px 7px;
+}
+
+
+.method{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 10px;
+  margin-left: 170px;
+  padding:10px 18px;
+  gap: 10px;
+  width: 150px;
+  height: 36px;
+  background: linear-gradient(180deg, #4480FF 0%, #115DFC 50%, #0550ED 100%);
+  box-shadow: 0px 0.5px 0.5px #EFEFEF, 0px 1px 0.5px rgba(239, 239, 239, 0.5);
+  border-radius: 5px;
+  border: 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+}
+
+.method .a, .a:hover, .a:focus, .a:active {
+      text-decoration: none;
+      color: inherit;
+ }
+
+.checkout {
+  border-radius: 19px 19px 7px 7px;
+}
+
+.checkout .details {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 10px;
+  gap: 5px;
+}
+
+.checkout .details span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.checkout .details span:nth-child(odd) {
+  font-size: 11px;
+  font-weight: 700;
+  color: #707175;
+  margin: auto auto auto 0;
+}
+
+.checkout .details span:nth-child(even) {
+  font-size: 13px;
+  font-weight: 600;
+  color: #47484b;
+  margin: auto 0 auto auto;
+}
+
+.checkout .checkout--footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 10px 20px;
+  border-radius: 0 0 7px 7px;
+  background-color: #efeff3;
+}
+
+.price {
+  position: relative;
+  font-size: 22px;
+  color: #2B2B2F;
+  font-weight: 900;
+}
+
+.price sub {
+  width: fit-content;
+  position: absolute;
+  font-size: 11px;
+  color: #5F5D6B;
+  bottom: 5px;
+  display: inline-block;
+}
+
+.checkout .checkout-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 36px;
+  background: linear-gradient(180deg, #4480FF 0%, #115DFC 50%, #0550ED 100%);
+  box-shadow: 0px 0.5px 0.5px #EFEFEF, 0px 1px 0.5px rgba(239, 239, 239, 0.5);
+  border-radius: 7px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+ }
+
+.hehe form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.hehe label {
+  display: flex;
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.375em;
+}
+
+.hehe  label input {
+  position: absolute;
+  left: -9999px;
+}
+
+.hehe label input:checked + span {
+  background: linear-gradient(180deg, #4480FF 0%, #115DFC 50%, #0550ED 100%);
+  color: white;
+}
+
+.hehe label input:checked + span:before {
+  box-shadow: inset 0 0 0 0.4375em #00005c;
+}
+
+.hehe label span {
+  display: flex;
+  align-items: center;
+  padding: 0.375em 0.75em 0.375em 0.375em;
+  border-radius: 99em;
+  transition: 0.25s ease;
+  color: #414181;
+}
+
+.hehe label span:hover {
+  background-color: #d6d6e5;
+}
+
+.hehe label span:before {
+  display: flex;
+  flex-shrink: 0;
+  content: "";
+  background-color: #fff;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  margin-right: 0.375em;
+  transition: 0.25s ease;
+  box-shadow: inset 0 0 0 0.125em #00005c;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background: #e7e4e4;
+}
+
+::-webkit-scrollbar-track{
+    background: rgb(187, 183, 183);
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: #555;
+}
+
+
+
+</style>
+
+<div class="hehe" style="margin-top: 130px; margin-bottom: 150px; display: flex; justify-content: center; align-items: center;">
+
+<div class="master-container">
+  <div class="card cart">
+    <label class="title">Your cart</label>
+    <div class="products">
+      <div class="product" style="display: flex;">
+        <div style="display: grid;">
+          <img src="{{Course.thumbnail.url}}" style="height: 150px; width: 250px; border-radius: 7px;" alt="">
+          <span style="margin-top: 10px;">{{Course.name}}</span>
+          <p style="margin-top: 10px;">{{Course.discription}}</p>
+         
+        </div>
+        <label class="price small" style="margin-top: 70px;">Price - {{Course.price}}Rs\-</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="card coupons">
+    <button class="method" >Payment Method</a></button>    
+    <div class="hehe" style="margin-left: 20px; margin-bottom: 10px;">
+	  <form style="margin-top: 10px;">
+		<label>
+			<input type="radio" name="radio">
+			<span>Prepaid Method</span>
+		</label>
+		<label>
+			<input type="radio" name="radio">
+			<span>Postpaid Method</span>
+		</label>
+	  </form>
+    </div>
+  </div>
+
+  <div class="card checkout">
+    <label class="title">Checkout</label>
+    <div class="details">
+      <span>Your cart subtotal:</span>
+      <span>{{Course.price}} Rs\-</span>
+      <span>Discount:</span>
+      <span>{{Course.discount}} %</span>
+     
+    </div>
+    <div class="checkout--footer">
+      <label class="price">{{Course.price}} Rs\-</label>
+      <button class="method" class="checkout-btn"><a href="?action=buy">Buy</a></button>
+    </div>
+  </div>
+</div>
+    </div>   
+ </div>
+ 
+
+</div>
+</div>
+{% if error is not None %}
+
+   <script>
+        
+        window.onload = () =>{
+          alert("{{error}}")
+        }
+       
+   </script>
+
+{% endif %}
+
+{%endblock%}

@@ -1,0 +1,135 @@
+{%extends 'Courses/base.html' %}
+
+{%block title%} Login
+{%endblock%}
+
+
+{%block content%}
+
+<style>
+    .card {
+  width: 300px;
+  height: max-content;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 30px;
+  gap: 13px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 100px -20px;
+}
+
+#cookieSvg {
+  width: 50px;
+}
+
+#cookieSvg g path {
+  fill: rgb(97, 81, 81);
+}
+
+.cookieHeading {
+  font-size: 1.2em;
+  font-weight: 800;
+  color: rgb(26, 26, 26);
+}
+
+.cookieDescription {
+  text-align: center;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: rgb(99, 99, 99);
+}
+
+.cookieDescription a {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246);
+}
+
+.cookieDescription a:hover {
+  -webkit-text-decoration-line: underline;
+  text-decoration-line: underline;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+}
+
+.acceptButton {
+  width: max-content;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+  background-color: rgb(16, 137, 211);
+  transition-duration: .2s;
+  border: none;
+  color: rgb(241, 241, 241);
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 20px;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 100px -20px;
+  transition: all .6s ease;
+}
+
+.declineButton {
+  width: 80px;
+  height: 30px;
+  background-color: #dadada;
+  transition-duration: .2s;
+  color: rgb(46, 46, 46);
+  border: none;
+  cursor: not-allowed;
+  font-weight: 600;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px -1px #bebdbd, 0 2px 4px -1px #bebdbd;
+  transition: all .6s ease;
+}
+
+.declineButton:hover {
+  background-color: #ebebeb;
+  box-shadow: 0 10px 15px -3px #bebdbd, 0 4px 6px -2px #bebdbd;
+  transition-duration: .2s;
+}
+
+.acceptButton:hover {
+  background-color: #07B90D;
+  box-shadow: 0 10px 15px -3px #07B90D, 0 4px 6px -2px #07B90D;
+  transition-duration: .2s;
+}
+
+a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+ }
+</style>
+
+<div class="container-fluid" >
+
+    <div class="row">
+        <div class="container-fluid row " style="margin-top: 110px; flex-direction: row;  justify-content: center; display: inline-flex; ">
+            
+            <div style="display: flex; align-items: center; justify-content: center; margin: 70px; ">
+                <div class="card">
+                    <img src="{{Course.thumbnail.url}}" class="card-img-top" style="border-radius: 8px;" alt="...">
+                    <p class="cookieHeading">{{Course.name}}</p>
+                    <p class="cookieDescription">{{Course.discription}}</a></p>
+                    <p class="cookieDescription">Save {{Course.discount}} %</a></p>
+                    <p class="cookieHeading">Price {{Course.price}} Rs\-</p>
+                 <div class="buttonContainer">
+                    <button class="acceptButton" ><a href="/check-out/{{Course.slug}}"> Check-out </a></button>
+                </div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

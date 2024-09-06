@@ -1,0 +1,19 @@
+.price{
+    font-size: 20px;
+
+}
+
+#video_list{
+    overflow-y: scroll;
+}
+.active-video{
+    background-color: black;
+  }
+
+.body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    background-color: black;
+    color: white;
+
+}

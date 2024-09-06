@@ -1,0 +1,320 @@
+{%extends 'Courses/base.html' %}
+{% load course_custom_tags %}
+{%block title%} Cody
+{%endblock%}
+{% load static %}
+
+
+{%block content%}
+<link rel="stylesheet" href="font-awesome-animation.min.css">
+
+<style>
+    .price{
+        font-size: 20px;
+    }
+    .body{  
+        font-family: "Montserrat", sans-serif;
+
+        padding-top: 50px;
+        background-color: white;
+        color: black;
+        width: 100%;
+        height: 100%;
+        position: absolute; left: 0;
+        
+    }
+    /*.main{
+        background-color: #e8e8e8;
+        border-radius: 40px;
+        height: 550px;
+        flex: 1;
+        overflow: scroll;
+        scrollbar-width: none;
+        padding: 0 1.5rem 0 1.5rem;
+        margin: 5rem 2.5rem 5rem 2.5rem;
+    }
+    .main:hover{
+        transition: 0.5s;
+        box-shadow: 7px 7px 56px -14px #C3D900;
+       
+    }*/
+
+/* #bottone1 {
+ text-decoration: none;
+ color: black ;
+ padding-left: 33px;
+ padding-right: 33px;
+ padding-bottom: 16px;
+ padding-top: 16px;
+ border-radius: 9px;
+ background: #d5f365;
+ border: none;
+ font-weight: 400;
+ font-style: italic;
+ font-family: inherit;
+ text-align: center;
+ cursor: pointer;
+ transition: 0.4s;
+}
+
+#bottone1:hover {
+ box-shadow: 7px 5px 56px -14px #C3D900;
+}
+
+#bottone1:active {
+ transform: scale(0.97);
+ box-shadow: 7px 5px 56px -10px #C3D900;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background: #e7e4e4;
+}
+
+::-webkit-scrollbar-track{
+    background: rgb(187, 183, 183);
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: #555;
+}
+
+.card {
+ width: 25rem;
+ height: 30rem;
+ border-radius: 20px;
+ background: #f5f5f5;
+ position: relative;
+ padding: 1.8rem;
+ border: 2px solid #c3c6ce;
+ transition: 0.5s ease-out;
+ overflow: visible;
+}
+
+.card-details {
+ color: black;
+ height: 100%;
+ gap: .5em;
+ display: grid;
+ place-content: center;
+}
+
+.card-button {
+ transform: translate(-50%, 125%);
+ text-decoration: none;
+ width: 60%;
+ border-radius: 1rem;
+ border: none;
+ background-color: #008bf8;
+ color: #fff;
+ font-size: 1rem;
+ padding: .5rem 1rem;
+ position: absolute;
+ left: 50%;
+ bottom: 0;
+ opacity: 0;
+ transition: 0.3s ease-out;
+}
+a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+ }
+.text-body {
+ color: rgb(134, 134, 134);
+}
+
+
+.text-title {
+ font-size: 1.5em;
+ font-weight: bold;
+}
+
+.card:hover {
+ border-color: #008bf8;
+ box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card:hover .card-button {
+ transform: translate(-50%, 50%);
+ opacity: 1;
+}*/
+.para{
+    color: black;
+    padding-top: 180px;
+    padding-left: 80px;
+    padding-bottom: 80px;
+}
+
+.card {
+  width: 300px;
+  height: max-content;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 30px;
+  gap: 13px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 100px -20px;
+}
+
+
+
+.cartHeading {
+  font-size: 1.2em;
+  font-weight: 800;
+  color: rgb(26, 26, 26);
+}
+
+.cartDescription {
+  text-align: center;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: rgb(99, 99, 99);
+}
+
+.cartDescription a {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246);
+}
+
+.cartDescription a:hover {
+  -webkit-text-decoration-line: underline;
+  text-decoration-line: underline;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+}
+
+.acceptButton {
+  width: max-content;
+  padding-bottom: 4px;
+  padding-top: 2.5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 30px;
+  background-color: rgb(16, 137, 211);
+  transition-duration: .2s;
+  border: none;
+  color: rgb(241, 241, 241);
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 20px;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 100px -20px;
+  transition: all .6s ease;
+}
+
+.declineButton {
+  width: 80px;
+  height: 30px;
+  background-color: #dadada;
+  transition-duration: .2s;
+  color: rgb(46, 46, 46);
+  border: none;
+  cursor: not-allowed;
+  font-weight: 600;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px -1px #bebdbd, 0 2px 4px -1px #bebdbd;
+  transition: all .6s ease;
+}
+
+.declineButton:hover {
+  background-color: #ebebeb;
+  box-shadow: 0 10px 15px -3px #bebdbd, 0 4px 6px -2px #bebdbd;
+  transition-duration: .2s;
+}
+
+.acceptButton:hover {
+  background-color: #07B90D;
+  box-shadow: 0 10px 15px -3px #07B90D, 0 4px 6px -2px #07B90D;
+  transition-duration: .2s;
+}
+
+a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+ }
+ .cardhehe:nth-child(3n + 1):not(:first-child) {
+  break-after: always;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background: #e7e4e4;
+}
+
+::-webkit-scrollbar-track{
+    background: rgb(187, 183, 183);
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: #555;
+}
+
+
+</style>
+
+<div class="body">
+    <div style="display: flex;">
+        <div class="para">
+            <h1 style="font-size: 80px; font-weight:bold ;">Learn Any Skill <br> to advance your </h1>
+            <h1 style="font-size: 80px; font-weight:bold; color:#008bf8;">Career Path</h1>
+        </div>
+        <div style="padding-top: 200px; padding-left:200px;">
+            <img src="{% static '/images/hehe1.jpg'%}" style="width:500px; height:300px; " alt="">
+ 
+        </div>
+    </div>
+    
+    <div class="main" style="padding-top:100px; padding-bottom: 100px;" >
+        <br>
+        <div class="cardhehe row mx-auto" style="justify-content: center;" >
+            {%for Course in Courses %}
+
+                <div class="card" style="margin: 50px">
+                      <img src="{{Course.thumbnail.url}}" class="card-img-top" style="border-radius: 8px;" alt="...">
+                      <p class="cartHeading">{{Course.name}}</p>
+                      <p class="cartDescription">{{Course.discription}}</p>
+                      <p class="cartHeading">Price {{Course.price}} Rs\-</p>
+                    {% is_enrolled request Course as enrolled %}
+                    <div class="row">
+                        {% if enrolled %}
+                        <div class="col">
+                            <button class="acceptButton"><a href="/course/{{Course.slug}}">Start Now</a>
+                            </button>
+                        </div>
+                        {% else %}
+                        <div class="col">
+                            <button class="acceptButton"><a href="/mycart/{{Course.slug}}">Add to <i class="fa-solid fa-cart-shopping"></i></a></button>
+                        </div>
+                        <div class="col">
+                            <button class="acceptButton"><a href="/course/{{Course.slug}}">Preview</a></button>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {%endfor%}
+        </div>
+    </div>
+ 
+  
+
+</div>
+
+
+
+
+
+{%endblock%}
